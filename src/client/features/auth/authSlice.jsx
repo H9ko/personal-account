@@ -8,19 +8,19 @@ import Axios from 'axios';
 import routes from '../../utils/routes';
 
 const initialState = {
-  isAuthenticated: false,
+  isAuthenticated: !!localStorage.getItem('jwtToken'),
   error: null,
-  jwtToken: null,
+  jwtToken: localStorage.getItem('jwtToken'),
 };
-
-// Thunk functions
 
 export const login = createAsyncThunk(
   'auth/login',
   async (userData, { rejectWithValue }) => {
     try {
       const response = await Axios.post(routes.signinPath(), userData);
-      return response.data;
+      const { accessToken } = response.data;
+      localStorage.setItem('jwtToken', accessToken);
+      return accessToken;
     } catch (err) {
       return rejectWithValue(err.response.data);
     }
@@ -31,11 +31,19 @@ const todosSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
+    logOut: (state) => {
+      const accessToken = null;
+      localStorage.setItem('jwtToken', accessToken);
+      state.isAuthenticated = false;
+      state.jwtToken = accessToken;
+      state.error = null;
+    },
   },
   extraReducers: {
     [login.fulfilled]: (state, { payload }) => {
+      const accessToken = payload;
       state.isAuthenticated = true;
-      state.jwtToken = payload.accessToken;
+      state.jwtToken = accessToken;
       state.error = null;
     },
     [login.rejected]: (state, { payload }) => {
@@ -46,12 +54,15 @@ const todosSlice = createSlice({
   },
 });
 
-// export const {
-// } = todosSlice.actions;
+export const {
+  actions: actionsAuth
+} = todosSlice;
+export const asyncActionsAuth = { login };
 
 export default todosSlice.reducer;
 
-export const selectAuthError = (state) => state.auth.error;
+export const selectError = (state) => state.auth.error;
+export const selectIsAuthenticated = (state) => state.auth.isAuthenticated;
 // export const selectTodoIds = createSelector(
 //   // First, pass one or more "input selector" functions:
 //   selectTodos,
@@ -59,3 +70,7 @@ export const selectAuthError = (state) => state.auth.error;
 //   // and returns a final result value
 //   (todos) => todos.map((todo) => todo.id)
 // );
+export const selectorsAuth = {
+  selectError,
+  selectIsAuthenticated,
+};
