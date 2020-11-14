@@ -6,9 +6,14 @@
       "id": 1
     },
     {
-      "email": "grmh9ko@mail.com",
+      "email": "grmh9ko@gmail.com",
       "password": "$2a$10$DMY5F/vYL/tZnE3qXTmU3edQpZkDvrW6dds.fwBLepIw2QJDHRXES",
       "id": 2
+    },
+    {
+      "email": "IRISCASAISHOVA-116@MAIL.RU",
+      "password": "$2a$10$ZFhjy66SG.WJLdHkAnD/5.jvDwCAgUeV6J4nS0xQlByOFYchsf.jK",
+      "id": 3
     }
   ]
 }

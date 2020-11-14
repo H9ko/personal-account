@@ -8,10 +8,25 @@ import Axios from 'axios';
 import routes from '../../utils/routes';
 
 const initialState = {
-  isAuthenticated: !!localStorage.getItem('jwtToken'),
-  error: null,
+  isAuthenticated: localStorage.getItem('jwtToken') !== 'null',
+  authError: null,
+  registrationError: null,
   jwtToken: localStorage.getItem('jwtToken'),
 };
+
+export const registation = createAsyncThunk(
+  'auth/registration',
+  async (userData, { rejectWithValue }) => {
+    try {
+      const response = await Axios.post(routes.registerPath(), userData);
+      const { accessToken } = response.data;
+      localStorage.setItem('jwtToken', accessToken);
+      return accessToken;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
 
 export const login = createAsyncThunk(
   'auth/login',
@@ -44,12 +59,23 @@ const todosSlice = createSlice({
       const accessToken = payload;
       state.isAuthenticated = true;
       state.jwtToken = accessToken;
-      state.error = null;
+      state.authError = null;
     },
     [login.rejected]: (state, { payload }) => {
       state.isAuthenticated = false;
       state.jwtToken = null;
-      state.error = payload;
+      state.authError = payload;
+    },
+    [registation.fulfilled]: (state, { payload }) => {
+      const accessToken = payload;
+      state.isAuthenticated = true;
+      state.jwtToken = accessToken;
+      state.registationError = null;
+    },
+    [registation.rejected]: (state, { payload }) => {
+      state.isAuthenticated = false;
+      state.jwtToken = null;
+      state.registationError = payload;
     }
   },
 });
@@ -57,11 +83,12 @@ const todosSlice = createSlice({
 export const {
   actions: actionsAuth
 } = todosSlice;
-export const asyncActionsAuth = { login };
+export const asyncActionsAuth = { login, registation };
 
 export default todosSlice.reducer;
 
-export const selectError = (state) => state.auth.error;
+export const selectAuthError = (state) => state.auth.authError;
+export const selectRegistrationError = (state) => state.auth.registationError;
 export const selectIsAuthenticated = (state) => state.auth.isAuthenticated;
 // export const selectTodoIds = createSelector(
 //   // First, pass one or more "input selector" functions:
@@ -71,6 +98,7 @@ export const selectIsAuthenticated = (state) => state.auth.isAuthenticated;
 //   (todos) => todos.map((todo) => todo.id)
 // );
 export const selectorsAuth = {
-  selectError,
+  selectAuthError,
+  selectRegistrationError,
   selectIsAuthenticated,
 };

@@ -1,31 +1,18 @@
 import React from 'react';
-import './app.css';
+import './application.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Redirect, Route, Switch, useHistory
 } from 'react-router-dom';
-import {
-  asyncActionsAuth, actionsAuth, selectorsAuth
-} from './features/auth/authSlice';
+import { actionsAuth, selectorsAuth } from './features/auth/authSlice';
+import Login from './components/login/Login';
+import Registration from './features/auth/Registration';
 
-const Signup = () => {
-  const dispatch = useDispatch();
-  const history = useHistory();
-  const niceError = useSelector(selectorsAuth.selectError);
-  const handleLogIn = async () => {
-    const email = 'grmh9ko@mail.com';
-    const password = '123456789';
-    await dispatch(asyncActionsAuth.login({ email, password }));
-    history.push('/');
-  };
-  return (
-    <div>
-      <h1>HELLO!</h1>
-      {niceError && <h1>{`Error: ${niceError}`}</h1>}
-      <button type="button" onClick={handleLogIn}>LogIn</button>
-    </div>
-  );
-};
+const Signup = () => (
+  <div>
+    <Login />
+  </div>
+);
 
 const Account = () => {
   const dispatch = useDispatch();
@@ -79,6 +66,7 @@ const App = () => {
       <Route exact path="/" render={() => (!isAuthenticated ? <Redirect to="/signup" /> : <Redirect to="/account" />)} />
       <Route path="/signup" component={Signup} />
       <Route path="/account" component={Account} />
+      <Route path="/registration" component={Registration} />
     </Switch>
   );
 };
