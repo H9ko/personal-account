@@ -13,7 +13,7 @@ const auth = require('json-server-auth');
 
 const server = jsonServer.create();
 const routes = jsonServer.router('db.json');
-const authRoles = jsonServer.router('routes.json');
+const authRoles = jsonServer.router('users.json');
 const middlewares = jsonServer.defaults({ static: 'dist' });
 server.db = authRoles.db;
 const rules = auth.rewriter({

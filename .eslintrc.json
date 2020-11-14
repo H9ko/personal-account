@@ -1,4 +1,9 @@
 {
+  "plugins": [
+    "react",
+    "jsx-a11y",
+    "react-hooks"
+  ],
   "parser": "babel-eslint",
   "extends": ["airbnb"],
   "env": {
@@ -6,8 +11,12 @@
     "node": true
   },
   "rules": {
+    "import/extensions": 0,
+    "react/prop-types": 0,
     "no-console": "off",
     "comma-dangle": "off",
-    "react/jsx-filename-extension": "off"
+    "react/jsx-filename-extension": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   }
 }
