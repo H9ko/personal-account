@@ -1,0 +1,29 @@
+POST http://localhost:8080/api/signin HTTP/1.1
+content-type: application/json
+
+{
+  "email": "test@mail.com",
+  "password": "123456789"
+}
+
+###
+POST http://localhost:8080/api/register HTTP/1.1
+content-type: application/json
+
+{
+  "email": "test@mail.com",
+  "password": "123456789"
+}
+
+###
+
+POST   http://localhost:8080/api/posts HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAbWFpbC5jb20iLCJpYXQiOjE2MDUzNTYwNDIsImV4cCI6MTYwNTM1OTY0Miwic3ViIjoiMSJ9.M3CmJkawL4jQaR1TInXzmr_nepKEDpMFmKMcbUq-WIo
+###
+
+GET   http://localhost:8080/api/posts HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAbWFpbC5jb20iLCJpYXQiOjE2MDUzNTYwNDIsImV4cCI6MTYwNTM1OTY0Miwic3ViIjoiMSJ9.M3CmJkawL4jQaR1TInXzmr_nepKEDpMFmKMcbUq-WIo
+
+###
+GET   http://localhost:8080/api/posts HTTP/1.1

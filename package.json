@@ -5,7 +5,7 @@
   "main": "src/server/index.js",
   "scripts": {
     "build": "npx webpack --mode production",
-    "start": "npm run build && node src/server/index.js",
+    "start": "npx kill-port 3000 8080 && npm run build && node src/server/index.js",
     "client": "webpack serve --mode development --devtool inline-source-map --hot",
     "server": "npx nodemon src/server/index.js",
     "dev": "npx concurrently \"npm run server\" \"npm run client\"",
@@ -14,9 +14,11 @@
   "author": "Vova Afanasiev",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.0",
     "babel-polyfill": "^6.26.0",
     "express": "^4.17.1",
     "json-server": "^0.16.2",
+    "json-server-auth": "^2.0.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },
