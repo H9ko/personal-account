@@ -1,20 +1,6 @@
 {
   "contacts": [
     {
-      "id": 0,
-      "name": "Варвара Емельянова",
-      "email": "Alaina.80@hotmail.com",
-      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/scrapdnb/128.jpg",
-      "phone": "(962)364-72-52"
-    },
-    {
-      "id": 1,
-      "name": "Евгения Колобова",
-      "email": "Gust.@yahoo.com",
-      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/chandlervdw/128.jpg",
-      "phone": "(902)090-16-32"
-    },
-    {
       "id": 2,
       "name": "Оксана Наумова",
       "email": "Frieda_26@yahoo.com",
@@ -22,25 +8,11 @@
       "phone": "(964)440-41-84"
     },
     {
-      "id": 3,
-      "name": "Валерий Потапов",
-      "email": "Llewellyn62@yandex.ru",
-      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/atariboy/128.jpg",
-      "phone": "(952)934-09-80"
-    },
-    {
       "id": 4,
       "name": "Антон Мартынов",
       "email": "Margarita11@mail.ru",
       "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/charliegann/128.jpg",
       "phone": "(926)582-77-60"
-    },
-    {
-      "id": 5,
-      "name": "Клавдия Ковалева",
-      "email": "Ari.69@yandex.ru",
-      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/kucingbelang4/128.jpg",
-      "phone": "(902)823-99-92"
     },
     {
       "id": 6,
@@ -55,13 +27,6 @@
       "email": "Elisha.76@yandex.ru",
       "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/sasha_shestakov/128.jpg",
       "phone": "(901)993-93-02"
-    },
-    {
-      "id": 8,
-      "name": "Алевтина Афанасьева",
-      "email": "Johnson_76@mail.ru",
-      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/hai_ninh_nguyen/128.jpg",
-      "phone": "(929)021-69-66"
     },
     {
       "id": 9,

@@ -17,7 +17,7 @@ const authRoles = jsonServer.router('users.json');
 const middlewares = jsonServer.defaults({ static: 'dist' });
 server.db = authRoles.db;
 const rules = auth.rewriter({
-  'api/contacts': 640,
+  'api/contacts': 660,
 });
 server.use(rules);
 server.use(middlewares);
@@ -26,7 +26,5 @@ server.use('/api', routes);
 // server.use(router);
 
 server.listen(process.env.PORT || 8080, () => {
-console.log('process.env', process.env);
-  
   console.log(`JSON Server is running ${process.env.PORT || 8080}!`);
 });
