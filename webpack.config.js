@@ -51,7 +51,7 @@ module.exports = {
     }),
     new MiniCss({
       filename: 'style.css',
-   }),
+    }),
 
   ]
 };

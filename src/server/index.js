@@ -26,5 +26,7 @@ server.use('/api', routes);
 // server.use(router);
 
 server.listen(process.env.PORT || 8080, () => {
+console.log('process.env', process.env);
+  
   console.log(`JSON Server is running ${process.env.PORT || 8080}!`);
 });
