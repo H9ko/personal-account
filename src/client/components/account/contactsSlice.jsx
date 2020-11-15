@@ -14,7 +14,7 @@ export const getContacts = createAsyncThunk(
   async (userData, { getState, rejectWithValue }) => {
     const { jwtToken } = getState().auth;
     try {
-      const response = await Axios.get('http://localhost:8080/api/contacts', { headers: { Authorization: `Bearer ${jwtToken}` } });
+      const response = await Axios.get('https://localhost:8080/api/contacts', { headers: { Authorization: `Bearer ${jwtToken}` } });
       return response.data;
     } catch (err) {
       return rejectWithValue(err.response.data);
