@@ -76,13 +76,11 @@ const authSlice = createSlice({
       state.isAuthenticated = false;
       state.jwtToken = null;
       state.registationError = payload;
-    }
+    },
   },
 });
 
-export const {
-  actions: actionsAuth
-} = authSlice;
+export const { actions: actionsAuth } = authSlice;
 export const asyncActionsAuth = { login, registation };
 
 export default authSlice.reducer;

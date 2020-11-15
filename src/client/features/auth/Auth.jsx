@@ -1,15 +1,13 @@
 import React from 'react';
-import {
-  ErrorMessage, Field, Form, Formik
-} from 'formik';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
-import {
-  asyncActionsAuth, selectorsAuth
-} from './authSlice';
+import { asyncActionsAuth, selectorsAuth } from './authSlice';
 
-const customError = ({ children }) => <div className="text-danger">{children}</div>;
+const customError = ({ children }) => (
+  <div className="text-danger">{children}</div>
+);
 
 const validationSchema = Yup.object().shape({
   password: Yup.string()
@@ -44,25 +42,41 @@ const Auth = () => {
           <div className="form-group">
             <div className="text-center">
               У вас нет аккаунта?
-              <Link to="/registration">  Зарегистрироваться</Link>
+              <Link to="/registration"> Зарегистрироваться</Link>
             </div>
           </div>
           <div className="form-group">
-            <Field type="text" name="email" className="form-control form-control-lg" placeholder="Почта или телефон" />
+            <Field
+              type="text"
+              name="email"
+              className="form-control form-control-lg"
+              placeholder="Почта или телефон"
+            />
             <ErrorMessage name="email" component={customError} />
           </div>
           <div className="form-group">
-            <Field type="password" name="password" className="form-control form-control-lg" placeholder="Пароль" />
+            <Field
+              type="password"
+              name="password"
+              className="form-control form-control-lg"
+              placeholder="Пароль"
+            />
             <ErrorMessage name="password" component={customError} />
           </div>
           <div className="form-group">
-            <button type="submit" className="btn btn-primary w-100" disabled={isSubmitting}>Войти</button>
+            <button
+              type="submit"
+              className="btn btn-primary w-100"
+              disabled={isSubmitting}
+            >
+              Войти
+            </button>
           </div>
           {authError && (
-          <div className="alert alert-danger" role="alert">
-            <div>Failed to log in.</div>
-            <div>{`Reason: ${authError}`}</div>
-          </div>
+            <div className="alert alert-danger" role="alert">
+              <div>Failed to log in.</div>
+              <div>{`Reason: ${authError}`}</div>
+            </div>
           )}
         </Form>
       )}

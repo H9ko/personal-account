@@ -14,7 +14,9 @@ export const getContacts = createAsyncThunk(
   async (userData, { getState, rejectWithValue }) => {
     const { jwtToken } = getState().auth;
     try {
-      const response = await Axios.get(routes.contactsPath(), { headers: { Authorization: `Bearer ${jwtToken}` } });
+      const response = await Axios.get(routes.contactsPath(), {
+        headers: { Authorization: `Bearer ${jwtToken}` },
+      });
       return response.data;
     } catch (err) {
       return rejectWithValue(err.response.data);
@@ -25,11 +27,10 @@ export const getContacts = createAsyncThunk(
 const contactsSlice = createSlice({
   name: 'contacts',
   initialState,
-  reducers: {
-  },
+  reducers: {},
   extraReducers: {
     [getContacts.fulfilled]: (state, { payload }) => {
-      const ff="";
+      const ff = '';
       return payload;
     },
     [getContacts.rejected]: (state, { payload }) => {
