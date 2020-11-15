@@ -42,7 +42,7 @@ export const login = createAsyncThunk(
   }
 );
 
-const todosSlice = createSlice({
+const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
@@ -82,10 +82,10 @@ const todosSlice = createSlice({
 
 export const {
   actions: actionsAuth
-} = todosSlice;
+} = authSlice;
 export const asyncActionsAuth = { login, registation };
 
-export default todosSlice.reducer;
+export default authSlice.reducer;
 
 export const selectAuthError = (state) => state.auth.authError;
 export const selectRegistrationError = (state) => state.auth.registationError;

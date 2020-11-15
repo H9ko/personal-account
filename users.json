@@ -14,6 +14,16 @@
       "email": "IRISCASAISHOVA-116@MAIL.RU",
       "password": "$2a$10$ZFhjy66SG.WJLdHkAnD/5.jvDwCAgUeV6J4nS0xQlByOFYchsf.jK",
       "id": 3
+    },
+    {
+      "email": "grmh9ko2@gmail.com",
+      "password": "$2a$10$1Srrs/HNDU7xBfkKfSQS0.sWQKIsrmut0tfpMm3jKNwSAZXM5Csrm",
+      "id": 4
+    },
+    {
+      "email": "grmh9ko3@gmail.com",
+      "password": "$2a$10$qeiQQJwH3y4TvBFdWy7CpO7DfUEUpL4PPP/.I8jvH/3IpLMwCzXYS",
+      "id": 5
     }
   ]
 }

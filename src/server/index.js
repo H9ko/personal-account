@@ -17,7 +17,7 @@ const authRoles = jsonServer.router('users.json');
 const middlewares = jsonServer.defaults({ static: 'dist' });
 server.db = authRoles.db;
 const rules = auth.rewriter({
-  'api/posts': 640,
+  'api/contacts': 640,
 });
 server.use(rules);
 server.use(middlewares);

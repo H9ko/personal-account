@@ -1,35 +1,19 @@
 import React from 'react';
 import './application.scss';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
-  Redirect, Route, Switch, useHistory
+  Redirect, Route, Switch
 } from 'react-router-dom';
-import { actionsAuth, selectorsAuth } from './features/auth/authSlice';
-import Login from './components/login/Login';
+import { selectorsAuth } from './features/auth/authSlice';
+import Auth from './features/auth/Auth';
 import Registration from './features/auth/Registration';
+import Account from './components/account/Account';
 
 const Signup = () => (
   <div>
-    <Login />
+    <Auth />
   </div>
 );
-
-const Account = () => {
-  const dispatch = useDispatch();
-  const history = useHistory();
-  const niceError = useSelector(selectorsAuth.selectError);
-  const handleLogOut = () => {
-    dispatch(actionsAuth.logOut());
-    history.push('/');
-  };
-  return (
-    <div>
-      <h1>HELLO Account!</h1>
-      {niceError && <h1>{`Error: ${niceError}`}</h1>}
-      <button type="button" onClick={handleLogOut}>LogOut</button>
-    </div>
-  );
-};
 
 const App = () => {
   const isAuthenticated = useSelector(selectorsAuth.selectIsAuthenticated);

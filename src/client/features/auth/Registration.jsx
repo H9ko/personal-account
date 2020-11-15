@@ -39,7 +39,7 @@ const Registration = () => {
               try {
                 await dispatch(asyncActionsAuth.registation(userData));
                 const res = await unwrapResult();
-                history.push('/');
+                history.push('/signup');
               } catch (error) {
                 setSubmitting(false);
               }
