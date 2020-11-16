@@ -70,7 +70,7 @@ const Contacts = () => {
           contacts.map(({ id, name, email, avatar, phone }) => {
             const dd = '';
             return (
-              <tr key={id} valign="center">
+              <tr key={id}>
                 <th className="align-middle" scope="row">
                   {id}
                 </th>
