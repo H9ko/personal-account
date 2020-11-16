@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Modal, Form, Button } from 'react-bootstrap';
 import { unwrapResult } from '@reduxjs/toolkit';
 import { selectorsModals, actionsModals } from './modalsSlice';
-import { asyncActionsContacts } from '../../components/account/contactsSlice';
+import { asyncActionsContacts } from '../../components/contacts/contactsSlice';
 
 const RemoveContact = () => {
   const dispatch = useDispatch();

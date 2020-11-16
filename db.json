@@ -1,13 +1,6 @@
 {
   "contacts": [
     {
-      "id": 2,
-      "name": "Оксана Наумова",
-      "email": "Frieda_26@yahoo.com",
-      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/dnirmal/128.jpg",
-      "phone": "(964)440-41-84"
-    },
-    {
       "id": 4,
       "name": "Антон Мартынов",
       "email": "Margarita11@mail.ru",
@@ -6959,11 +6952,11 @@
       "phone": "(926)307-60-96"
     },
     {
-      "id": 999,
-      "name": "Олег Воробьев",
-      "email": "Lizzie22@mail.ru",
-      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/privetwagner/128.jpg",
-      "phone": "(929)286-62-12"
+      "id": 1,
+      "name": "vov",
+      "email": "eee",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/lososina/128.jpg",
+      "phone": "123"
     }
   ]
 }

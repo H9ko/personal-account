@@ -21,7 +21,7 @@ const Info = () => {
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={handleSubmit}>
-          <div className="alert alert-danger" role="alert">
+          <div className="alert alert-danger text-break" role="alert">
             {message}
           </div>
           <Button type="submit" className="btn btn-primary">

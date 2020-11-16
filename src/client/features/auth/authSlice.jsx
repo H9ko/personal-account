@@ -88,13 +88,7 @@ export default authSlice.reducer;
 export const selectAuthError = (state) => state.auth.authError;
 export const selectRegistrationError = (state) => state.auth.registationError;
 export const selectIsAuthenticated = (state) => state.auth.isAuthenticated;
-// export const selectTodoIds = createSelector(
-//   // First, pass one or more "input selector" functions:
-//   selectTodos,
-//   // Then, an "output selector" that receives all the input results as arguments
-//   // and returns a final result value
-//   (todos) => todos.map((todo) => todo.id)
-// );
+
 export const selectorsAuth = {
   selectAuthError,
   selectRegistrationError,

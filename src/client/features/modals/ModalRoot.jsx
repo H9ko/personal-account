@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import AddContact from './AddContact';
 import Info from './Info';
 // import AddChannel from './modals/AddChannel';
 import { selectorsModals } from './modalsSlice';
@@ -10,6 +11,7 @@ import RemoveContact from './RemoveContact';
 const MODAL_COMPONENTS = {
   REMOVE_CONTACT: RemoveContact,
   INFO: Info,
+  ADD_CONTACT: AddContact,
   /* other modals */
 };
 
