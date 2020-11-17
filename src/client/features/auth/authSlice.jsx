@@ -5,6 +5,7 @@ import {
   createAsyncThunk,
 } from '@reduxjs/toolkit';
 import Axios from 'axios';
+import { getContacts } from '../../components/contacts/contactsSlice';
 import routes from '../../utils/routes';
 
 const initialState = {
@@ -76,6 +77,11 @@ const authSlice = createSlice({
       state.isAuthenticated = false;
       state.jwtToken = null;
       state.registationError = payload;
+    },
+    [getContacts.rejected]: (state, { payload }) => {
+      state.isAuthenticated = false;
+      state.jwtToken = null;
+      state.authError = payload;
     },
   },
 });

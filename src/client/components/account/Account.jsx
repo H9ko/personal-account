@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
-import { actionsAuth } from '../../features/auth/authSlice';
+import { actionsAuth, selectorsAuth } from '../../features/auth/authSlice';
 import { actionsModals } from '../../features/modals/modalsSlice';
 import ModalRoot from '../../features/modals/ModalRoot';
 import {
@@ -54,19 +54,23 @@ const SearchBar = () => {
 };
 
 const Account = () => {
+  const isAuthenticated = useSelector(selectorsAuth.selectIsAuthenticated);
   const dispatch = useDispatch();
-  const history = useHistory();
   useEffect(() => {
-    console.log('dispatch(asyncActionsContacts.getContacts());');
     dispatch(asyncActionsContacts.getContacts());
   }, [dispatch]);
+
   const handleAdd = () => {
     dispatch(actionsModals.showModal({ modalType: 'ADD_CONTACT' }));
   };
   const handleLogOut = () => {
     dispatch(actionsAuth.logOut());
-    history.push('/');
   };
+  const history = useHistory();
+  console.log('Account -> isAuthenticated', isAuthenticated);
+  if (!isAuthenticated) {
+    history.push('/');
+  }
   return (
     <div>
       <div className="d-flex m-3 align-items-center">

@@ -48,11 +48,6 @@ const contactsSlice = createSlice({
     [getContacts.fulfilled]: (state, { payload }) => {
       contactsAdapter.setAll(state, payload);
     },
-    [getContacts.rejected]: (state, { payload }) => {
-      state.isAuthenticated = false;
-      state.jwtToken = null;
-      state.authError = payload;
-    },
   },
 });
 

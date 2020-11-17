@@ -32,13 +32,11 @@ const RemoveContact = () => {
   return (
     <Modal show onHide={handleHide}>
       <Modal.Header closeButton>
-        <Modal.Title>Remove channel</Modal.Title>
+        <Modal.Title>Remove contact</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={handleSubmit}>
-          <Button type="submit" className="btn btn-primary">
-            Confirm remove contact
-          </Button>
+          <Button type="submit">Confirm remove contact</Button>
         </Form>
       </Modal.Body>
     </Modal>
