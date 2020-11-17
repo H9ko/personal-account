@@ -9,13 +9,12 @@ import {
   asyncActionsContacts,
   selectorContacts,
   actionsContacts,
-} from '../contacts/contactsSlice';
-import Contacts from '../contacts/Contacts';
+} from '../../features/contacts/contactsSlice';
+import Contacts from '../../features/contacts/Contacts';
 
 const SearchBar = () => {
   const dispatch = useDispatch();
   const searchText = useSelector(selectorContacts.selectSearchText);
-  console.log('SearchBar -> searchText', searchText);
   return (
     <div className="flex-grow-1">
       <form className="form-inline d-flex justify-content-center md-form form-sm mt-0">
@@ -67,7 +66,6 @@ const Account = () => {
     dispatch(actionsAuth.logOut());
   };
   const history = useHistory();
-  console.log('Account -> isAuthenticated', isAuthenticated);
   if (!isAuthenticated) {
     history.push('/');
   }

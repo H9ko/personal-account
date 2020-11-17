@@ -1,12 +1,16 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { actionsModals } from '../../features/modals/modalsSlice';
+import { actionsModals } from '../modals/modalsSlice';
 import { selectorContacts } from './contactsSlice';
 
-const Actions = ({ id }) => {
-  const dd = '';
+const Actions = ({ contactId }) => {
   const dispatch = useDispatch();
+  const handleEditContact = (id) => () => {
+    dispatch(
+      actionsModals.showModal({ modalType: 'EDIT_CONTACT', modalProps: id })
+    );
+  };
   const handleRemoveContact = (id) => () => {
     dispatch(
       actionsModals.showModal({ modalType: 'REMOVE_CONTACT', modalProps: id })
@@ -14,7 +18,7 @@ const Actions = ({ id }) => {
   };
   return (
     <div className="btn-group" role="group" aria-label="Basic example">
-      <Button>
+      <Button onClick={handleEditContact(contactId)}>
         <svg
           width="1em"
           height="1em"
@@ -29,7 +33,7 @@ const Actions = ({ id }) => {
           />
         </svg>
       </Button>
-      <Button onClick={handleRemoveContact(id)}>
+      <Button onClick={handleRemoveContact(contactId)}>
         <svg
           width="1em"
           height="1em"
@@ -50,9 +54,7 @@ const Actions = ({ id }) => {
 };
 
 const Contacts = () => {
-  const jwt = '';
   const contacts = useSelector(selectorContacts.selectContacts);
-  console.log('Contacts -> contacts', contacts);
   return (
     <table className="table table-hover">
       <thead className="thead-light">
@@ -68,7 +70,6 @@ const Contacts = () => {
       <tbody>
         {contacts &&
           contacts.map(({ id, name, email, avatar, phone }) => {
-            const dd = '';
             return (
               <tr key={id}>
                 <th className="align-middle" scope="row">
@@ -86,7 +87,7 @@ const Contacts = () => {
                 <td className="align-middle">{email}</td>
                 <td className="align-middle">{phone}</td>
                 <td className="align-middle">
-                  <Actions id={id} />
+                  <Actions contactId={id} />
                 </td>
               </tr>
             );

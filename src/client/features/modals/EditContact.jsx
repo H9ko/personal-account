@@ -2,46 +2,69 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal, Form, Button } from 'react-bootstrap';
 import { unwrapResult } from '@reduxjs/toolkit';
-import { selectorsModals, actionsModals } from './modalsSlice';
-import { asyncActionsContacts } from '../../components/contacts/contactsSlice';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import { actionsModals, selectorsModals } from './modalsSlice';
+import {
+  asyncActionsContacts,
+  selectorContacts,
+} from '../contacts/contactsSlice';
 
-const AddContact = () => {
+const validationSchema = Yup.object().shape({
+  email: Yup.string().email('Invalid email').required('Required'),
+  name: Yup.string().min(3).required('Required'),
+  phone: Yup.string().min(3).required('Required'),
+});
+
+const EditContact = () => {
+  const id = useSelector(selectorsModals.selectModalProps);
+  const contact = useSelector((state) =>
+    selectorContacts.selectById(state, id)
+  );
+  const { name, email, phone } = contact;
   const dispatch = useDispatch();
-  // const id = useSelector(selectorsModals.selectModalProps);
   const handleHide = () => {
     dispatch(actionsModals.hideModal());
   };
 
-  const handleSubmit = async (e) => {
-    
-    // e.preventDefault();
-    // try {
-    //   const resultAction = await dispatch(
-    //     asyncActionsContacts.removeContact({ id })
-    //   );
-    //   unwrapResult(resultAction);
-    //   handleHide();
-    // } catch ({ message }) {
-    //   dispatch(
-    //     actionsModals.showModal({
-    //       modalType: 'INFO',
-    //       modalProps: { message },
-    //     })
-    //   );
-    // }
-  };
+  const f = useFormik({
+    initialValues: {
+      name,
+      email,
+      phone,
+    },
+    validationSchema,
+    onSubmit: async (values) => {
+      const updatedContact = { ...contact, ...values };
+      try {
+        const resultAction = await dispatch(
+          asyncActionsContacts.editContact(updatedContact)
+        );
+        unwrapResult(resultAction);
+        handleHide();
+      } catch ({ message }) {
+        dispatch(
+          actionsModals.showModal({
+            modalType: 'INFO',
+            modalProps: { message },
+          })
+        );
+      }
+    },
+  });
+
   return (
     <Modal show onHide={handleHide} dialogClassName="modal-90w">
       <Modal.Header closeButton>
         <Modal.Title>Add contact</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={f.handleSubmit}>
           <table className="table">
             <thead className="thead-light">
               <tr>
                 <th scope="col">Имя</th>
-                <th scope="col">Фамилия</th>
+                <th scope="col">Email</th>
                 <th scope="col">Телефон</th>
                 <th scope="col">Действия</th>
               </tr>
@@ -49,30 +72,45 @@ const AddContact = () => {
             <tbody>
               <tr>
                 <td>
-                  <Form.Control id="name" placeholder="Enter name..." />
+                  <Form.Control
+                    onChange={f.handleChange}
+                    value={f.values.name}
+                    isInvalid={!!f.errors.name}
+                    id="name"
+                    placeholder="Enter name..."
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {f.errors.name}
+                  </Form.Control.Feedback>
                 </td>
                 <td>
-                  <Form.Control id="email" placeholder="Enter email..." />
+                  <Form.Control
+                    onChange={f.handleChange}
+                    value={f.values.email}
+                    isInvalid={!!f.errors.email}
+                    id="email"
+                    placeholder="Enter email..."
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {f.errors.email}
+                  </Form.Control.Feedback>
                 </td>
                 <td>
-                  <Form.Control id="phone" placeholder="Enter phone..." />
+                  <Form.Control
+                    onChange={f.handleChange}
+                    value={f.values.phone}
+                    isInvalid={!!f.errors.phone}
+                    id="phone"
+                    placeholder="Enter phone..."
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {f.errors.phone}
+                  </Form.Control.Feedback>
                 </td>
                 <td>
-                  <Button type="submit">Добавить</Button>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <Form.Control id="name" placeholder="Enter name..." />
-                </td>
-                <td>
-                  <Form.Control id="email" placeholder="Enter email..." />
-                </td>
-                <td>
-                  <Form.Control id="phone" placeholder="Enter phone..." />
-                </td>
-                <td>
-                  <Button type="submit">Добавить</Button>
+                  <Button disabled={f.errors.body} type="submit">
+                    Изменить
+                  </Button>
                 </td>
               </tr>
             </tbody>
@@ -83,4 +121,4 @@ const AddContact = () => {
   );
 };
 
-export default AddContact;
+export default EditContact;

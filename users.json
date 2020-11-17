@@ -29,6 +29,21 @@
       "email": "IRISCASAISHOVA@MAIL.RU",
       "password": "$2a$10$V8yPC2JUDBWSWFvAHLuqBO5xAhxBxGJ0ZSIA3b4zf4WgY2eotlvlC",
       "id": 6
+    },
+    {
+      "email": "123@gmail.com",
+      "password": "$2a$10$JGIe7ycCHfJwNOkgifOD1uDdxQ/s5NJvWHdc8JjCBSIAXG2.NFnRK",
+      "id": 7
+    },
+    {
+      "email": "grm4o@gmail.com",
+      "password": "$2a$10$E.fPPTUuyl/1NzLbK7a7rO5yrdYgsjAI.nRQQKjxIdUDCovjEhtbW",
+      "id": 8
+    },
+    {
+      "email": "grmh94ko@gmail.com",
+      "password": "$2a$10$H2XzpZmEfeFL9u1OLU3MkOF4zeKYANqEKdVXegwtFxSgOLk0orWau",
+      "id": 9
     }
   ]
 }

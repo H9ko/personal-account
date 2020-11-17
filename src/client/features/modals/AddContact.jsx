@@ -5,7 +5,7 @@ import { unwrapResult } from '@reduxjs/toolkit';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { actionsModals } from './modalsSlice';
-import { asyncActionsContacts } from '../../components/contacts/contactsSlice';
+import { asyncActionsContacts } from '../contacts/contactsSlice';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Required'),

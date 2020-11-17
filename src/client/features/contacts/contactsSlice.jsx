@@ -7,7 +7,7 @@ import {
 } from '@reduxjs/toolkit';
 import Axios from 'axios';
 import faker from 'faker';
-import { actionsModals } from '../../features/modals/modalsSlice';
+import { actionsModals } from '../modals/modalsSlice';
 import routes from '../../utils/routes';
 
 const contactsAdapter = createEntityAdapter();
@@ -35,6 +35,10 @@ const contactsSlice = createSlice({
       const { newUser } = payload;
       contactsAdapter.addOne(state, newUser);
     },
+    edit: (state, { payload }) => {
+      const { userData } = payload;
+      contactsAdapter.updateOne(state, { id: userData.id, changes: userData });
+    },
     remove: (state, { payload }) => {
       const { id } = payload;
       contactsAdapter.removeOne(state, id);
@@ -53,31 +57,24 @@ const contactsSlice = createSlice({
 
 export const removeContact = createAsyncThunk(
   'contacts/remove',
-  async (userData, { dispatch, getState, rejectWithValue }) => {
+  async (userData, { dispatch, getState }) => {
     const { jwtToken } = getState().auth;
     const { id } = userData;
-    console.log('userData', userData);
 
     try {
-      const response = await Axios.delete(
-        [routes.contactsPath(), id].join('/'),
-        {
-          headers: { Authorization: `Bearer ${jwtToken}` },
-        }
-      );
-      console.log('response', response);
+      await Axios.delete([routes.contactsPath(), id].join('/'), {
+        headers: { Authorization: `Bearer ${jwtToken}` },
+      });
       dispatch(contactsSlice.actions.remove({ id }));
-      // return response.data;
     } catch (err) {
       dispatch(actionsModals.showModal('INFO', err.response.data));
-      // return rejectWithValue(err.response.data);
     }
   }
 );
 
 export const addContact = createAsyncThunk(
   'contacts/add',
-  async (userData, { dispatch, getState, rejectWithValue }) => {
+  async (userData, { dispatch, getState }) => {
     const { jwtToken } = getState().auth;
     const maxId = getState().contacts.ids.reduce((acc, id) =>
       id > acc ? id : acc
@@ -90,27 +87,50 @@ export const addContact = createAsyncThunk(
       avatar: faker.internet.avatar(),
       phone,
     };
-    console.log('userData', userData);
 
     try {
       const response = await Axios.post(routes.contactsPath(), newUser, {
         headers: { Authorization: `Bearer ${jwtToken}` },
       });
       dispatch(contactsSlice.actions.add({ newUser: response.data }));
-      // return response.data;
     } catch (err) {
       dispatch(actionsModals.showModal('INFO', err.response.data));
-      // return rejectWithValue(err.response.data);
+    }
+  }
+);
+export const editContact = createAsyncThunk(
+  'contacts/edit',
+  async (userData, { dispatch, getState }) => {
+    const { jwtToken } = getState().auth;
+
+    try {
+      const response = await Axios.patch(
+        [routes.contactsPath(), userData.id].join('/'),
+        userData,
+        {
+          headers: { Authorization: `Bearer ${jwtToken}` },
+        }
+      );
+      dispatch(contactsSlice.actions.edit({ userData: response.data }));
+    } catch (err) {
+      dispatch(actionsModals.showModal('INFO', err.response.data));
     }
   }
 );
 
 export const { actions: actionsContacts } = contactsSlice;
-export const asyncActionsContacts = { getContacts, removeContact, addContact };
+export const asyncActionsContacts = {
+  getContacts,
+  removeContact,
+  addContact,
+  editContact,
+};
 
 export default contactsSlice.reducer;
 
-const { selectAll } = contactsAdapter.getSelectors((state) => state.contacts);
+const { selectAll, selectById } = contactsAdapter.getSelectors(
+  (state) => state.contacts
+);
 const selectSearchText = (state) => state.contacts.searchText;
 
 const filteredContacts = createSelector(
@@ -125,4 +145,5 @@ const filteredContacts = createSelector(
 export const selectorContacts = {
   selectContacts: filteredContacts,
   selectSearchText,
+  selectById,
 };

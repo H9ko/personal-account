@@ -1,11 +1,7 @@
 /* eslint-disable no-param-reassign */
-import {
-  createSlice,
-  createSelector,
-  createAsyncThunk,
-} from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import Axios from 'axios';
-import { getContacts } from '../../components/contacts/contactsSlice';
+import { getContacts } from '../contacts/contactsSlice';
 import routes from '../../utils/routes';
 
 const initialState = {

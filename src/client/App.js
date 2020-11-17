@@ -1,7 +1,7 @@
 import React from 'react';
 import './application.scss';
 import { useSelector } from 'react-redux';
-import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import { selectorsAuth } from './features/auth/authSlice';
 import Auth from './features/auth/Auth';
 import Registration from './features/auth/Registration';

@@ -3,7 +3,6 @@ import { Link, useHistory } from 'react-router-dom';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
-import { unwrapResult } from '@reduxjs/toolkit';
 import { asyncActionsAuth, selectorsAuth } from './authSlice';
 
 const customError = ({ children }) => (
@@ -42,7 +41,6 @@ const Registration = () => {
               const userData = { email, password };
               try {
                 await dispatch(asyncActionsAuth.registation(userData));
-                const res = await unwrapResult();
                 history.push('/signup');
               } catch (error) {
                 setSubmitting(false);
@@ -82,17 +80,6 @@ const Registration = () => {
                     component={customError}
                   />
                 </div>
-                {/* <div className="form-group form-check">
-                  <label htmlFor="acceptRules" className="form-check-label">
-                    <Field type="checkbox" name="acceptRules" className="form-check-input" />
-                    Я согласен на:
-                    <div className="ul">
-                      <li>Обработку персональных данных (ФЗ 152)</li>
-                      <li>Передачу персональных данных третьим лицам</li>
-                      <li>Обращения для информирования и напоминания</li>
-                    </div>
-                  </label>
-                </div> */}
                 <div className="form-group ">
                   <button
                     type="submit"
