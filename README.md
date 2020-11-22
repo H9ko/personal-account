@@ -1,6 +1,6 @@
 # Приложение персональный аккаунт 
 
-## <a href="https://personal-account-z.herokuapp.com/">Демо версия приложения</a>
+## [Демо версия приложения](https://personal-account-z.herokuapp.com/)
 
 
 Реализованые функции:
