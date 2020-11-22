@@ -1,6 +1,6 @@
 # Приложение персональный аккаунт 
 
-## ![Демо версия приложения](https://personal-account-z.herokuapp.com/)
+## [Демо версия приложения](https://personal-account-z.herokuapp.com/ target="_blank)
 
 
 Реализованые функции:
