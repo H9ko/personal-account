@@ -1,7 +1,6 @@
 # Приложение персональный аккаунт 
 
-## [Демо версия приложения](https://personal-account-z.herokuapp.com/ target="_blank")
-
+## <a href="https://personal-account-z.herokuapp.com/" target="_blank">Демо версия приложения</a>
 
 Реализованые функции:
 - backend на основе json-serven на роуте /api
